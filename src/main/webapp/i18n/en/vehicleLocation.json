@@ -1,0 +1,25 @@
+{
+  "maxVehicleApp": {
+    "vehicleLocation": {
+      "home": {
+        "title": "Vehicle Locations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Vehicle Location",
+        "createOrEditLabel": "Create or edit a Vehicle Location",
+        "notFound": "No Vehicle Locations found"
+      },
+      "created": "A new Vehicle Location is created with identifier {{ param }}",
+      "updated": "A Vehicle Location is updated with identifier {{ param }}",
+      "deleted": "A Vehicle Location is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Vehicle Location {{ id }}?"
+      },
+      "detail": {
+        "title": "Vehicle Location"
+      },
+      "id": "ID",
+      "code": "Code",
+      "description": "Description"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "maxVehicleApp": {
+    "vehicle": {
+      "home": {
+        "title": "Vehicles",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Vehicle",
+        "createOrEditLabel": "Créer ou éditer un Vehicle",
+        "notFound": "Aucun Vehicle trouvé"
+      },
+      "created": "Un nouveau Vehicle a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Vehicle avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Vehicle avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Vehicle {{ id }} ?"
+      },
+      "detail": {
+        "title": "Vehicle"
+      },
+      "id": "ID",
+      "vehicleID": "Vehicle ID",
+      "plateNumber": "Plate Number",
+      "age": "Age",
+      "colour": "Colour",
+      "vehicleType": "Vehicle Type",
+      "vehicleLocation": "Vehicle Location",
+      "manufacturer": "Manufacturer"
+    }
+  }
+}

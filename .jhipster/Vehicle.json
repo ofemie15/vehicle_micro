@@ -1,0 +1,57 @@
+{
+  "name": "Vehicle",
+  "fields": [
+    {
+      "fieldName": "vehicleID",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "plateNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "colour",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "vehicleType",
+      "otherEntityRelationshipName": "vehicle",
+      "relationshipName": "vehicleType",
+      "otherEntityField": "code"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "vehicleLocation",
+      "otherEntityRelationshipName": "vehicle",
+      "relationshipName": "vehicleLocation",
+      "otherEntityField": "code"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "manufacturer",
+      "otherEntityRelationshipName": "vehicle",
+      "relationshipName": "manufacturer",
+      "otherEntityField": "name"
+    }
+  ],
+  "javadoc": "Vehicle",
+  "entityTableName": "vehicle",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["maxVehicle"],
+  "angularJSSuffix": "mySuffix",
+  "databaseType": "sql",
+  "changelogDate": "20220114122659"
+}

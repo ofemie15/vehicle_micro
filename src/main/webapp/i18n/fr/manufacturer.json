@@ -1,0 +1,26 @@
+{
+  "maxVehicleApp": {
+    "manufacturer": {
+      "home": {
+        "title": "Manufacturers",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Manufacturer",
+        "createOrEditLabel": "Créer ou éditer un Manufacturer",
+        "notFound": "Aucun Manufacturer trouvé"
+      },
+      "created": "Un nouveau Manufacturer a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Manufacturer avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Manufacturer avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Manufacturer {{ id }} ?"
+      },
+      "detail": {
+        "title": "Manufacturer"
+      },
+      "id": "ID",
+      "name": "Name",
+      "address": "Address",
+      "phoneNumber": "Phone Number"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "VehicleType",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "Different type of Vehicles",
+  "entityTableName": "vehicle_type",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["maxVehicle"],
+  "angularJSSuffix": "mySuffix",
+  "databaseType": "sql",
+  "changelogDate": "20220114122759"
+}

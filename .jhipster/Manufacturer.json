@@ -1,0 +1,31 @@
+{
+  "name": "Manufacturer",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "javadoc": "Manufacturer",
+  "entityTableName": "manufacturer",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["maxVehicle"],
+  "angularJSSuffix": "mySuffix",
+  "databaseType": "sql",
+  "changelogDate": "20220114122959"
+}
