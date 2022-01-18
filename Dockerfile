@@ -4,7 +4,7 @@ FROM node:14-alpine
 
 WORKDIR /usr/node-app
 
-ENV NODE_SERVER_PORT=8085
+ENV NODE_SERVER_PORT=8080
 
 COPY . .
 
@@ -20,6 +20,6 @@ WORKDIR ..
 
 RUN npm install --force
 
-EXPOSE 8085
+EXPOSE 8080
 
 ENTRYPOINT ["npm", "run", "start:app" ]
