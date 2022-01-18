@@ -1,14 +1,15 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
   annotations:
-    deployment.kubernetes.io/revision: "1"
-  creationTimestamp: "2022-01-18T21:30:39Z"
-  generation: 1
+    cloud.google.com/neg: '{"ingress":true}'
+  creationTimestamp: "2022-01-18T20:58:31Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
   labels:
-    app: maxchampmicro
+    app: maxvmicro
   managedFields:
-  - apiVersion: apps/v1
+  - apiVersion: v1
     fieldsType: FieldsV1
     fieldsV1:
       f:metadata:
@@ -16,123 +17,65 @@ metadata:
           .: {}
           f:app: {}
       f:spec:
-        f:progressDeadlineSeconds: {}
-        f:replicas: {}
-        f:revisionHistoryLimit: {}
-        f:selector: {}
-        f:strategy:
-          f:rollingUpdate:
+        f:externalTrafficPolicy: {}
+        f:ports:
+          .: {}
+          k:{"port":80,"protocol":"TCP"}:
             .: {}
-            f:maxSurge: {}
-            f:maxUnavailable: {}
-          f:type: {}
-        f:template:
-          f:metadata:
-            f:labels:
-              .: {}
-              f:app: {}
-          f:spec:
-            f:containers:
-              k:{"name":"github-femie15max-champion-micro-1"}:
-                .: {}
-                f:image: {}
-                f:imagePullPolicy: {}
-                f:name: {}
-                f:resources: {}
-                f:terminationMessagePath: {}
-                f:terminationMessagePolicy: {}
-            f:dnsPolicy: {}
-            f:restartPolicy: {}
-            f:schedulerName: {}
-            f:securityContext: {}
-            f:terminationGracePeriodSeconds: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":8080,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          .: {}
+          f:app: {}
+        f:sessionAffinity: {}
+        f:type: {}
     manager: GoogleCloudConsole
     operation: Update
-    time: "2022-01-18T21:30:39Z"
-  - apiVersion: apps/v1
+    time: "2022-01-18T20:58:31Z"
+  - apiVersion: v1
     fieldsType: FieldsV1
     fieldsV1:
       f:metadata:
-        f:annotations:
+        f:finalizers:
           .: {}
-          f:deployment.kubernetes.io/revision: {}
-      f:status:
-        f:availableReplicas: {}
-        f:conditions:
-          .: {}
-          k:{"type":"Available"}:
-            .: {}
-            f:lastTransitionTime: {}
-            f:lastUpdateTime: {}
-            f:message: {}
-            f:reason: {}
-            f:status: {}
-            f:type: {}
-          k:{"type":"Progressing"}:
-            .: {}
-            f:lastTransitionTime: {}
-            f:lastUpdateTime: {}
-            f:message: {}
-            f:reason: {}
-            f:status: {}
-            f:type: {}
-        f:observedGeneration: {}
-        f:readyReplicas: {}
-        f:replicas: {}
-        f:updatedReplicas: {}
+          v:"service.kubernetes.io/load-balancer-cleanup": {}
     manager: kube-controller-manager
     operation: Update
-    time: "2022-01-18T21:31:35Z"
-  name: maxchampmicro
+    time: "2022-01-18T20:58:31Z"
+  name: maxvmicro-service
   namespace: default
-  resourceVersion: "3021344"
-  uid: c21d4bd1-bcea-4b82-947d-1604e022f5a5
+  resourceVersion: "3008218"
+  uid: 04c79233-f4b6-47e0-8185-42754a176675
 spec:
-  progressDeadlineSeconds: 600
-  replicas: 3
-  revisionHistoryLimit: 10
+  clusterIP: 10.16.14.189
+  clusterIPs:
+  - 10.16.14.189
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 80-to-80-tcp
+    nodePort: 30142
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: 8080-to-8080-tcp
+    nodePort: 31061
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
   selector:
-    matchLabels:
-      app: maxchampmicro
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: maxchampmicro
-    spec:
-      containers:
-      - image: gcr.io/nirvana15/github_femie15max_champion_micro:a84590c
-        imagePullPolicy: IfNotPresent
-        name: github-femie15max-champion-micro-1
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
+    app: maxvmicro
+  sessionAffinity: None
+  type: LoadBalancer
 status:
-  availableReplicas: 3
-  conditions:
-  - lastTransitionTime: "2022-01-18T21:31:35Z"
-    lastUpdateTime: "2022-01-18T21:31:35Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  - lastTransitionTime: "2022-01-18T21:30:39Z"
-    lastUpdateTime: "2022-01-18T21:31:35Z"
-    message: ReplicaSet "maxchampmicro-5f578f98d8" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  observedGeneration: 1
-  readyReplicas: 3
-  replicas: 3
-  updatedReplicas: 3
+  loadBalancer: {}
