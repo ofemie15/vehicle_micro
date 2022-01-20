@@ -1,16 +1,16 @@
 steps:
 #First Clone from Google Cloud Source Repository  
 - name: 'gcr.io/cloud-builders/git'
-  args: ['clone','https://source.developers.google.com/p/nirvana15/r/github_femie15max_vehicle_micro']
+  args: ['clone','https://github.com/femie15max/vehicle_micro']
 
 #Build the image 
 - name: 'gcr.io/cloud-builders/docker'  
-  args: ['build','-t','gcr.io/nirvana15/gcr.io/nirvana15/github.com/femie15max/vehicle_micro:${_VERSION}','.']
+  args: ['build','-t','gcr.io/maxproject/github.com/femie15max/vehicle_micro:${_VERSION}','.']
  # args: ['build','-t','gcr.io/nirvana15/${_CONTAINERNAME}:${_VERSION}','.']
 
 #Push the image  
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push','gcr.io/nirvana15/gcr.io/nirvana15/github.com/femie15max/vehicle_micro:${_VERSION}']
+  args: ['push','gcr.io/maxproject/github.com/femie15max/vehicle_micro:${_VERSION}']
   
 #Update the container image using kubectl set
 #- name: 'gcr.io/cloud-builders/kubectl'
@@ -18,26 +18,25 @@ steps:
  # - 'set'
  # - 'image'
  # - 'deployment/${_DEPLOYMENTNAME}'
- # - '${_CONTAINERNAME}=gcr.io/nirvana15/gcr.io/nirvana15/github.com/femie15max/vehicle_micro:${_VERSION}'
+ # - '${_CONTAINERNAME}=gcr.io/nirvana15/gcr.io/nirvana15/github.com/femie15max/max-blueprint:${_VERSION}'
  # env:
  # - 'CLOUDSDK_COMPUTE_ZONE=${_ZONE}'
  # - 'CLOUDSDK_CONTAINER_CLUSTER=${_GKE_CLUSTER}'
   
 substitutions:
     #GCP Specific configuration. Please DON'T change anything
-    _PROJECT: nirvana15
-    _ZONE: europe-west2-c
-    _GKE_CLUSTER: max-kubernetes-cluster
+    _PROJECT: maxproject
+    _ZONE: us-central1-a
+    _GKE_CLUSTER: maxcluster
     
     #Repository Specific configuration. DevOps can change this settings
     _DEPLOYMENTNAME: maxvehicle
-    _CONTAINERNAME: gcr.io/nirvana15/gcr.io/nirvana15/github.com/femie15max/vehicle_micro:${_VERSION}
-    _REPO_NAME: github_femie15max_vehicle_micro
+    _CONTAINERNAME: gcr.io/maxproject/github.com/femie15max/vehicle_micro:${_VERSION}
+    _REPO_NAME: github_femie15max_max-blueprint
     
     
     # Developers ONLY change
-    _VERSION: v2.0
+    _VERSION: v1.0
     
 options:
     substitution_option: 'ALLOW_LOOSE'
-    
