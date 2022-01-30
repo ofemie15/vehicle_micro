@@ -5,12 +5,12 @@ steps:
 
 #Build the image 
 - name: 'gcr.io/cloud-builders/docker'  
-  args: ['build','-t','gcr.io/maxproject2/github.com/femie15max/vehicle_micro:${_VERSION}','.']
+  args: ['build','-t','gcr.io/nirvana15/github.com/femie15max/vehicle_micro:${_VERSION}','.']
  # args: ['build','-t','gcr.io/nirvana15/${_CONTAINERNAME}:${_VERSION}','.']
 
 #Push the image  
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push','gcr.io/maxproject2/github.com/femie15max/vehicle_micro:${_VERSION}']
+  args: ['push','gcr.io/nirvana15/github.com/femie15max/vehicle_micro:${_VERSION}']
   
 #Update the container image using kubectl set
 #- name: 'gcr.io/cloud-builders/kubectl'
@@ -25,13 +25,13 @@ steps:
   
 substitutions:
     #GCP Specific configuration. Please DON'T change anything
-    _PROJECT: maxproject
+    _PROJECT: coinplanner
     _ZONE: us-central1-a
     _GKE_CLUSTER: maxcluster
     
     #Repository Specific configuration. DevOps can change this settings
     _DEPLOYMENTNAME: maxvehicle
-    _CONTAINERNAME: gcr.io/maxproject2/github.com/femie15max/vehicle_micro:${_VERSION}
+    _CONTAINERNAME: gcr.io/nirvana15/github.com/femie15max/vehicle_micro:${_VERSION}
     _REPO_NAME: github_femie15max_max-blueprint
     
     
