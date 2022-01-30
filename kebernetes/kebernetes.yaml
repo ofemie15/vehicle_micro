@@ -1,14 +1,15 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
   annotations:
-    deployment.kubernetes.io/revision: "1"
-  creationTimestamp: "2022-01-20T15:52:10Z"
-  generation: 1
+    cloud.google.com/neg: '{"ingress":true}'
+  creationTimestamp: "2022-01-30T00:30:01Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
   labels:
-    app: vehicle-container
+    app: vehicle
   managedFields:
-  - apiVersion: apps/v1
+  - apiVersion: v1
     fieldsType: FieldsV1
     fieldsV1:
       f:metadata:
@@ -16,123 +17,57 @@ metadata:
           .: {}
           f:app: {}
       f:spec:
-        f:progressDeadlineSeconds: {}
-        f:replicas: {}
-        f:revisionHistoryLimit: {}
-        f:selector: {}
-        f:strategy:
-          f:rollingUpdate:
+        f:externalTrafficPolicy: {}
+        f:ports:
+          .: {}
+          k:{"port":8080,"protocol":"TCP"}:
             .: {}
-            f:maxSurge: {}
-            f:maxUnavailable: {}
-          f:type: {}
-        f:template:
-          f:metadata:
-            f:labels:
-              .: {}
-              f:app: {}
-          f:spec:
-            f:containers:
-              k:{"name":"vehicle-micro-1"}:
-                .: {}
-                f:image: {}
-                f:imagePullPolicy: {}
-                f:name: {}
-                f:resources: {}
-                f:terminationMessagePath: {}
-                f:terminationMessagePolicy: {}
-            f:dnsPolicy: {}
-            f:restartPolicy: {}
-            f:schedulerName: {}
-            f:securityContext: {}
-            f:terminationGracePeriodSeconds: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          .: {}
+          f:app: {}
+        f:sessionAffinity: {}
+        f:type: {}
     manager: GoogleCloudConsole
     operation: Update
-    time: "2022-01-20T15:52:10Z"
-  - apiVersion: apps/v1
+    time: "2022-01-30T00:30:00Z"
+  - apiVersion: v1
     fieldsType: FieldsV1
     fieldsV1:
       f:metadata:
-        f:annotations:
+        f:finalizers:
           .: {}
-          f:deployment.kubernetes.io/revision: {}
+          v:"service.kubernetes.io/load-balancer-cleanup": {}
       f:status:
-        f:availableReplicas: {}
-        f:conditions:
-          .: {}
-          k:{"type":"Available"}:
-            .: {}
-            f:lastTransitionTime: {}
-            f:lastUpdateTime: {}
-            f:message: {}
-            f:reason: {}
-            f:status: {}
-            f:type: {}
-          k:{"type":"Progressing"}:
-            .: {}
-            f:lastTransitionTime: {}
-            f:lastUpdateTime: {}
-            f:message: {}
-            f:reason: {}
-            f:status: {}
-            f:type: {}
-        f:observedGeneration: {}
-        f:readyReplicas: {}
-        f:replicas: {}
-        f:updatedReplicas: {}
+        f:loadBalancer:
+          f:ingress: {}
     manager: kube-controller-manager
     operation: Update
-    time: "2022-01-20T15:53:11Z"
-  name: vehicle-container
+    time: "2022-01-30T00:30:30Z"
+  name: vehicle-service
   namespace: default
-  resourceVersion: "233280"
-  uid: f8157f37-b237-4fa6-b21e-656295d28861
+  resourceVersion: "28316"
+  uid: 38edfafa-c68e-4f68-8e99-2d59b333bfae
 spec:
-  progressDeadlineSeconds: 600
-  replicas: 3
-  revisionHistoryLimit: 10
+  clusterIP: 10.56.6.62
+  clusterIPs:
+  - 10.56.6.62
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 32577
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
   selector:
-    matchLabels:
-      app: vehicle-container
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: vehicle-container
-    spec:
-      containers:
-      - image: gcr.io/maxproject2/github.com/femie15max/vehicle_micro:4e6e171
-        imagePullPolicy: IfNotPresent
-        name: vehicle-micro-1
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
+    app: vehicle
+  sessionAffinity: None
+  type: LoadBalancer
 status:
-  availableReplicas: 3
-  conditions:
-  - lastTransitionTime: "2022-01-20T15:53:11Z"
-    lastUpdateTime: "2022-01-20T15:53:11Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  - lastTransitionTime: "2022-01-20T15:52:10Z"
-    lastUpdateTime: "2022-01-20T15:53:11Z"
-    message: ReplicaSet "vehicle-container-5c76f9dfd" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  observedGeneration: 1
-  readyReplicas: 3
-  replicas: 3
-  updatedReplicas: 3
+  loadBalancer:
+    ingress:
+    - ip: 34.67.229.143
