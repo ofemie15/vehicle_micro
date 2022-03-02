@@ -6,16 +6,38 @@ jobs:
     steps:
       - checkout
       - run: echo "Running tests"
-      - run: npm install
-      - run: npm test
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
+      - run:
+          name: install packages
+          command: npm ci
+      - save_cache:
+          key: node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
+          paths:
+            - ~/.npm
+      - run:
+          name: Run Tests
+          command: npm run test
   build:
     docker:
       - image: circleci/node:15.1
     steps:
       - checkout
       - run: echo "build project"
-      - run: npm install
-      - run: npm build
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
+      - run:
+          name: install packages
+          command: npm ci
+      - save_cache:
+          key: node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
+          paths:
+            - ~/.npm
+      - run:
+          name: Run Build
+          command: npm run build
 
 workflows: 
     test_build:
