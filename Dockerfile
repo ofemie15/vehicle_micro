@@ -1,6 +1,6 @@
 FROM node:14-alpine
 
-# Create app directory
+# Create app directory.
 
 WORKDIR /usr/node-app
 
@@ -20,6 +20,6 @@ WORKDIR ..
 
 RUN npm install --force
 
-EXPOSE 8080
+EXPOSE 8080 
 
 ENTRYPOINT ["npm", "run", "start:app" ]
