@@ -1,36 +1,26 @@
 version: 2.1
 jobs:
   test:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/node:15.1
+      - image: circleci/node:15.1
     steps:
       - checkout
-      - restore_cache:
-          # See the configuration reference documentation for more details on using restore_cache and save_cache steps
-          # https://circleci.com/docs/2.0/configuration-reference/?section=reference#save_cache
-          keys:
-            - node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
-      - run:
-          name: install packages
-          command: npm ci
-      - save_cache:
-          key: node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
-          paths:
-            - ~/.npm
-      - run:
-          name: Run Tests
-          command: npm run test
+      - run: echo "Running tests"
+      - run: npm install
+      - run: npm test
   build:
     docker:
       - image: circleci/node:15.1
     steps:
       - checkout
-      - run: npm install      
-      - run: npm test
+      - run: echo "build project"
+      - run: npm install
+      - run: npm build
 
-workflows:
-  orb-free-workflow:
-    jobs:
-      - build
+workflows: 
+    test_build:
+      jobs:
+        - test
+        - build:
+            requires:
+              - test
