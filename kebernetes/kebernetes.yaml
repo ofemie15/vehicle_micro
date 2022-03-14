@@ -3,11 +3,11 @@ kind: Service
 metadata:
   annotations:
     cloud.google.com/neg: '{"ingress":true}'
-  creationTimestamp: "2022-01-30T00:30:01Z"
+  creationTimestamp: "2022-03-14T01:27:44Z"
   finalizers:
   - service.kubernetes.io/load-balancer-cleanup
   labels:
-    app: vehicle
+    app: vehicle-container
   managedFields:
   - apiVersion: v1
     fieldsType: FieldsV1
@@ -32,7 +32,7 @@ metadata:
         f:type: {}
     manager: GoogleCloudConsole
     operation: Update
-    time: "2022-01-30T00:30:00Z"
+    time: "2022-03-14T01:27:44Z"
   - apiVersion: v1
     fieldsType: FieldsV1
     fieldsV1:
@@ -45,29 +45,29 @@ metadata:
           f:ingress: {}
     manager: kube-controller-manager
     operation: Update
-    time: "2022-01-30T00:30:30Z"
-  name: vehicle-service
+    time: "2022-03-14T01:28:28Z"
+  name: vehicle-container-service
   namespace: default
-  resourceVersion: "28316"
-  uid: 38edfafa-c68e-4f68-8e99-2d59b333bfae
+  resourceVersion: "1318453"
+  uid: f892f39c-b32d-4d6b-9274-159113f54637
 spec:
-  clusterIP: 10.56.6.62
+  clusterIP: 10.65.0.198
   clusterIPs:
-  - 10.56.6.62
+  - 10.65.0.198
   externalTrafficPolicy: Cluster
   ipFamilies:
   - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-  - nodePort: 32577
+  - nodePort: 32369
     port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    app: vehicle
+    app: vehicle-container
   sessionAffinity: None
   type: LoadBalancer
 status:
   loadBalancer:
     ingress:
-    - ip: 34.67.229.143
+    - ip: 34.102.16.219
